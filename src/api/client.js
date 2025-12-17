@@ -1,67 +1,63 @@
 // src/api/client.js
-// Helper API client functions for frontend
+// Single source of truth for backend API calls (Vercel-safe)
 
-// Default to Vite proxy path in dev so requests go to local backend
 const API_BASE =
-  import.meta.env.VITE_API_BASE_URL ||
-  import.meta.env.VITE_API_BASE ||
-  '/api';
+  import.meta.env.VITE_API_URL ||
+  "https://rrnagar-backend.onrender.com/api";
 
-// Origin helper for building absolute URLs (e.g., for /uploads/* assets)
-const BACKEND_ORIGIN = (
-  import.meta.env.VITE_BACKEND_ORIGIN ||
-  API_BASE.replace(/\/?api\/?$/, '') ||
-  (import.meta.env.DEV ? 'http://localhost:4000' : '')
-).replace(/\/$/, '');
+// Backend origin (used only for assets if needed)
+const BACKEND_ORIGIN = API_BASE.replace(/\/api$/, "");
 
 export { API_BASE, BACKEND_ORIGIN };
 
+// ---------- helpers ----------
+
+async function handle(res, method, endpoint) {
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`${method} ${endpoint} failed: ${res.status} ${text}`);
+  }
+  return res.json();
+}
+
 export async function get(endpoint, options = {}) {
-  const url = `${API_BASE}${endpoint}`;
-  const res = await fetch(url, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    method: "GET",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
     ...options,
   });
-  if (!res.ok) throw new Error(`GET ${endpoint} failed: ${res.status}`);
-  return res.json();
+  return handle(res, "GET", endpoint);
 }
 
 export async function post(endpoint, body, auth = null) {
-  const url = `${API_BASE}${endpoint}`;
-  const res = await fetch(url, {
-    method: 'POST',
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    method: "POST",
+    credentials: "include",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       ...(auth ? { Authorization: `Bearer ${auth}` } : {}),
     },
-    credentials: 'include',
     body: JSON.stringify(body),
   });
-  if (!res.ok) throw new Error(`POST ${endpoint} failed: ${res.status}`);
-  return res.json();
+  return handle(res, "POST", endpoint);
 }
 
 export async function put(endpoint, body) {
-  const url = `${API_BASE}${endpoint}`;
-  const res = await fetch(url, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    method: "PUT",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
-  if (!res.ok) throw new Error(`PUT ${endpoint} failed: ${res.status}`);
-  return res.json();
+  return handle(res, "PUT", endpoint);
 }
 
 export async function del(endpoint) {
-  const url = `${API_BASE}${endpoint}`;
-  const res = await fetch(url, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    method: "DELETE",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
   });
-  if (!res.ok) throw new Error(`DELETE ${endpoint} failed: ${res.status}`);
-  return res.json();
+  return handle(res, "DELETE", endpoint);
 }
