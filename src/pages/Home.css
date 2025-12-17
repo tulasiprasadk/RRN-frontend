@@ -166,9 +166,8 @@
 
 .cat-row {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  grid-auto-rows: 90px;
-  gap: 18px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
   justify-items: center;
   align-items: center;
   position: relative;
@@ -178,13 +177,29 @@
   max-width: 100%;
 }
 
-.cat-card {
+@media (max-width: 1100px) {
+  .cat-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .cat-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .cat-row {
+    grid-template-columns: 1fr;
+  }
+}
+
   background: #ffe84b !important;
-  padding: 10px 8px;
-  border-radius: 10px;
-  text-align: center;
+  aspect-ratio: 1 / 1;
   width: 90px;
   min-width: 90px;
+  max-width: 90px;
+  border-radius: 10px;
+  text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.07);
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -192,6 +207,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 
 .cat-card:hover {
@@ -206,22 +222,7 @@
   margin-top: 4px;
 }
 
-  width: 90px;
-  height: 90px;
-  min-width: 90px;
-  min-height: 90px;
-  max-width: 90px;
-  max-height: 90px;
-  padding: 0;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.07);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
 
 /* -----------------------------------
    ADS MARQUEE (RIGHT → LEFT)
