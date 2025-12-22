@@ -25,7 +25,7 @@ const defaultCategories = [
   { id: 28, name: "Pet services", icon: "🐾", kannada: "ಪಶು ಸೇವೆಗಳು" },
   { id: 24, name: "Local Services", icon: "🛠️", kannada: "ಸ್ಥಳೀಯ ಸೇವೆಗಳು" },
   { id: 25, name: "Consultancy", icon: "📑", kannada: "ಸಲಹಾ ಸೇವೆಗಳು" },
-];
+
 ];
 
 export default function Home() {
@@ -98,42 +98,7 @@ export default function Home() {
     if (e.key === "Enter") handleSearchClick();
   }
 
-<<<<<<< HEAD
-  /* ================= CATEGORIES ================= */
-  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    loadCategories();
-  }, []);
-
-  async function loadCategories() {
-    try {
-      const res = await axios.get(`${API_BASE}/categories`);
-      const data = res.data || [];
-
-      if (!data.length) {
-        setCategories(defaultCategories);
-        return;
-      }
-
-      setCategories(
-        data.map((cat) => {
-          const def = defaultCategories.find(
-            (d) =>
-              d.name.replace(/\s+/g, "").toLowerCase() ===
-              (cat.name || "").replace(/\s+/g, "").toLowerCase()
-          );
-          return {
-            ...cat,
-            icon: def?.icon || cat.icon || "🛍️",
-            nameKannada: def?.nameKannada || cat.nameKannada || "",
-          };
-        })
-      );
-    } catch {
-      setCategories(defaultCategories);
-    }
-  }
 
   /* 🔑 ONLY MODIFIED FUNCTION */
   function handleCategoryClick(id) {
@@ -171,73 +136,11 @@ export default function Home() {
     navigate(`/browse?category=${id}`);
   }
 
-  /* ================= ADS ================= */
-  const ads = [
-    { image: ad1, title: "iChase Fitness", link: "https://vchase.in" },
-    { image: ad2, title: "Marketing", link: "https://vchase.in" },
-    { image: ad3, title: "Crackers", link: "https://rrnagar.com" },
-    { image: ad4, title: "Pet Services", link: "https://thevetbuddy.com" },
-  ];
-  const adsLoop = [...ads, ...ads];
 
-  /* ================= DISCOVER ================= */
-  const discover = [
-    { title: "Temples", titleKannada: "ದೇವಾಲಯಗಳು", desc: "Spiritual places", icon: "🛕" },
-    { title: "Parks", titleKannada: "ಉದ್ಯಾನಗಳು", desc: "Green spaces", icon: "🌳" },
-    { title: "IT Parks", titleKannada: "ಐಟಿ ಉದ್ಯಾನಗಳು", desc: "Tech hubs", icon: "💻" },
-    { title: "Education", titleKannada: "ಶಿಕ್ಷಣ", desc: "Schools & colleges", icon: "🎓" },
-    { title: "Entertainment", titleKannada: "ಮನರಂಜನೆ", desc: "Fun places", icon: "🎭" },
-  ];
-
-  const discoverRef = useRef(null);
-  const [scrollWidth, setScrollWidth] = useState(0);
-
-  useEffect(() => {
-    if (!discoverRef.current) return;
-    const calcWidth = () => {
-      let total = 0;
-      discoverRef.current.querySelectorAll(".discover-item").forEach((item) => {
-        const style = window.getComputedStyle(item);
-        total += item.offsetWidth + parseFloat(style.marginRight || "0");
-      });
-      setScrollWidth(total);
-    };
-    calcWidth();
-    window.addEventListener("resize", calcWidth);
-    return () => window.removeEventListener("resize", calcWidth);
-  }, []);
-
-  const featuredProducts = products.slice(0, 8);
-  const displayedProducts = hasSearched ? filteredProducts : featuredProducts;
-
-  return (
-    <main className="home" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-      {/* Left Mega Ad */}
-      <MegaAd position="left" image="/ads/mega-left.png" link="#" />
-
-      {/* Main Content */}
-      <div style={{ flex: 1, maxWidth: 1200 }}>
-        {/* HERO */}
-        <section className="hero">
-          <div className="hero-inner">
-            <div className="hero-image">
-              <img
-                src={heroSrc}
-                alt="RR Nagar"
-                loading="lazy"
-                onError={(e) => (e.currentTarget.src = hero1)}
-              />
-            </div>
-=======
+  // MAIN RENDER
   return (
     <>
-      <main className="home" style={{ display: "flex", width: "100%" }}>
-        {/* LEFT SIDEBAR */}
-        <aside style={{ marginRight: 24 }}>
-          <MegaAd image="/ads/mega-left.png" position="left" />
-        </aside>
->>>>>>> 4e37e52 (Initial commit: working RRnagar frontend)
-
+      <main style={{ display: "flex", alignItems: "flex-start" }}>
         {/* MAIN CONTENT */}
         <div style={{ flex: 1, minWidth: 0 }}>
           {/* HERO */}
@@ -275,31 +178,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* ADS */}
-<<<<<<< HEAD
-          <section className="section">
-            <h2 className="section-title">What’s New in RR Nagar</h2>
-            <div className="ads-viewport">
-              <div className="ads-track">
-                {adsLoop.map((ad, i) => (
-                  <a
-                    key={i}
-                    href={ad.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="ad-item"
-                  >
-                    <div className="ad-title">{ad.title}</div>
-                    <img src={ad.image} alt={ad.title} loading="lazy" />
-                    <div className="ad-cta">Tap to view</div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </section>
-=======
           <AdScroll />
->>>>>>> 4e37e52 (Initial commit: working RRnagar frontend)
 
           {/* DISCOVER */}
           <section className="section">
@@ -362,7 +241,7 @@ export default function Home() {
                             longInfo:
                               "IT Park in RR Nagar has tech companies, startups, and innovation.",
                             longInfoKannada:
-                              "ಐಟಿ ಪಾರ್ಕ್ ಉದ್ಯೋಗ ಮತ್ತು ಹೊಸ ಆವಿಷ್ಕಾರಗಳಿಗೆ ಪ್ರಸಿದ್ಧ.",
+                              "ಐಟಿ ಪಾರ್ಕ್ ಉದ್ಯೋಗ ಮತ್ತು ಹೊಸ ಆವಿಷ್ಕಾರಗಳಿಗೆ.",
                           });
                           setPopupAnchor(ref3);
                         }}
@@ -373,7 +252,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-<<<<<<< HEAD
 
           {/* PRODUCTS */}
           <section className="section">
@@ -405,8 +283,6 @@ export default function Home() {
               ))}
             </div>
           </section>
-=======
->>>>>>> 4e37e52 (Initial commit: working RRnagar frontend)
         </div>
 
         {/* RIGHT SIDEBAR */}

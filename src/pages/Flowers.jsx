@@ -83,98 +83,25 @@ export default function Flowers() {
             >
               {cat.products.map((product) => {
                 const info = flowerInfo[product.name?.trim()] || {};
-
                 return (
-                  <div
-                    key={product.id}
-                    style={{
-                      border: "1px solid #eee",
-                      borderRadius: 12,
-                      padding: 12,
-                      background: "#fff",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      minHeight: 110,
-                      cursor: "pointer",
-                      transition: "box-shadow 0.2s"
-                    }}
-                    onClick={() =>
-                      addItem({
-                        id: `${cat.category}-${product.name}`,
-                        name: product.name,
-                        price: product.price,
-                        unit: product.unit
-                      })
-                    }
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.boxShadow =
-                        "0 2px 12px rgba(200,16,46,0.12)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.boxShadow = "none")
-                    }
-                  >
-                    <span style={{ fontSize: 32 }}>
-                      {info.emoji || "🌸"}
-                    </span>
-
-                    <span style={{ fontWeight: 700 }}>
-                      {product.name}
-                    </span>
-
-                    {info.kn && (
-                      <span
-                        style={{
-                          color: "#C8102E",
-                          fontSize: 14,
-                          fontWeight: 600,
-                          fontFamily: 'Noto Sans Kannada, sans-serif'
-                        }}
-                      >
-                        {info.kn}
-                      </span>
-                    )}
-
-                    <span style={{ fontSize: 13, color: "#555" }}>
-                      ₹{product.price} / {product.unit}
-                    </span>
+                  <div key={product.id} style={{
+                    border: '1px solid #eee',
+                    borderRadius: 12,
+                    padding: 12,
+                    background: '#fff',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: 110
+                  }}>
+                    <span style={{ fontSize: 32, marginBottom: 4 }}>{info.emoji || "🌸"}</span>
+                    <span style={{ fontWeight: 700 }}>{product.name}</span>
+                    <span style={{ color: '#c8102e', fontSize: 15, fontWeight: 600, marginTop: 2 }}>{info.kn || ''}</span>
+                    <span style={{ fontSize: 13, color: '#555', marginTop: 2 }}>₹{product.price} / {product.unit}</span>
                   </div>
                 );
               })}
-=======
-              <div
-                className="product-grid"
-                style={{
-                  display: "grid",
-                  gap: 16,
-                  marginTop: 16
-                }}
-              >
-                {cat.products.map((product) => {
-                  const info = flowerInfo[product.name?.trim()] || {};
-                  return (
-                    <div key={product.id} style={{
-                      border: '1px solid #eee',
-                      borderRadius: 12,
-                      padding: 12,
-                      background: '#fff',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      minHeight: 110
-                    }}>
-                      <span style={{ fontSize: 32, marginBottom: 4 }}>{info.emoji || "🌸"}</span>
-                      <span style={{ fontWeight: 700 }}>{product.name}</span>
-                      <span style={{ color: '#c8102e', fontSize: 15, fontWeight: 600, marginTop: 2 }}>{info.kn || ''}</span>
-                      <span style={{ fontSize: 13, color: '#555', marginTop: 2 }}>₹{product.price} / {product.unit}</span>
-                    </div>
-                  );
-                })}
-              </div>
->>>>>>> 4e37e52 (Initial commit: working RRnagar frontend)
             </div>
           </div>
         ))}
