@@ -2,22 +2,6 @@
 // src/pages/Flowers.jsx
 
 // ...existing code...
-// Simple emoji and Kannada mapping for common flowers
-const flowerInfo = {
-  "Mallige": { emoji: "🌼", kn: "ಮಲ್ಲಿಗೆ" },
-  "Sujee mallige": { emoji: "🌼", kn: "ಸುಜೀ ಮಲ್ಲಿಗೆ" },
-  "Kanakambara": { emoji: "🌺", kn: "ಕನಕಾಂಬರ" },
-  "Kakada": { emoji: "🌸", kn: "ಕಾಕಡ" },
-  "Jajee": { emoji: "🌻", kn: "ಜಾಜೀ" },
-  "Ganere /ganagile": { emoji: "🌷", kn: "ಗಣೇರೆ/ಗಣಗಿಲೆ" },
-  "Sevanthige": { emoji: "🌻", kn: "ಸೇವಂತಿಗೆ" },
-  "Rose ( red)": { emoji: "🌹", kn: "ಗುಲಾಬಿ (ಕೆಂಪು)" },
-  "Sevanthige(yellow)": { emoji: "🌻", kn: "ಸೇವಂತಿಗೆ (ಹಳದಿ)" },
-  "Rose (pink)": { emoji: "🌹", kn: "ಗುಲಾಬಿ (ಗುಲಾಬಿ)" },
-  "Rose (Yellow)": { emoji: "🌹", kn: "ಗುಲಾಬಿ (ಹಳದಿ)" },
-  "Sevanthige  ( white)": { emoji: "🌼", kn: "ಸೇವಂತಿಗೆ (ಬಿಳಿ)" },
-  "Sevanthige (blue)": { emoji: "🌼", kn: "ಸೇವಂತಿಗೆ (ನೀಲಿ)" },
-};
 // ...existing code...
 import flowers from "../data/flowers.json";
 import { useCrackerCart } from "../context/CrackerCartContext";
@@ -72,7 +56,6 @@ export default function Flowers() {
               {cat.category}
             </h2>
 
-<<<<<<< HEAD
             <div
               style={{
                 display: "grid",
