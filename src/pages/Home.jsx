@@ -93,11 +93,6 @@ const categoriesReady = categories.length > 0;
   return (
     <>
       <main style={{ display: "flex", alignItems: "flex-start" }}>
-        {/* LEFT SIDEBAR */}
-        <aside style={{ marginRight: 24 }}>
-          <MegaAd image="/ads/mega-left.png" position="left" />
-        </aside>
-
         <div style={{ flex: 1, minWidth: 0 }}>
           {/* HERO */}
           <section className="hero">
@@ -256,10 +251,7 @@ const categoriesReady = categories.length > 0;
           </section>
         </div>
 
-        {/* RIGHT SIDEBAR */}
-        <aside style={{ marginLeft: 24 }}>
-          <MegaAd image="/ads/mega-right.png" position="right" />
-        </aside>
+        {/* MegaAd sidebars removed */}
       </main>
 
       <DiscoverPopup
