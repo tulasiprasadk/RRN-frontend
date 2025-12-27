@@ -86,21 +86,28 @@ export default function PaymentPage() {
   return (
     <div style={{ 
       padding: '40px 20px', 
-      maxWidth: '600px', 
+      maxWidth: '700px', 
       margin: '0 auto',
-      background: '#fff',
-      minHeight: '80vh'
+      background: '#FFFDE7',
+      minHeight: '80vh',
+      borderRadius: '18px',
+      boxShadow: '0 2px 16px rgba(0,0,0,0.07)'
     }}>
 
       <h2 style={{ 
         color: '#333', 
-        marginBottom: '10px',
-        fontSize: '28px'
+        marginBottom: '18px',
+        fontSize: '28px',
+        background: '#FFF9C4',
+        padding: '12px 0',
+        borderRadius: '10px',
+        textAlign: 'center',
+        boxShadow: '0 1px 6px rgba(0,0,0,0.04)'
       }}>
         Complete Your Payment
       </h2>
 
-      <div style={{ marginBottom: 24 }}>
+      <div style={{ marginBottom: 24, background: '#FFF9C4', padding: '12px', borderRadius: '10px' }}>
         <label style={{ fontWeight: 600, fontSize: 17, marginRight: 18 }}>
           <input type="radio" value="upi" checked={method === "upi"} onChange={() => setMethod("upi")}/> UPI
         </label>
@@ -110,7 +117,7 @@ export default function PaymentPage() {
       </div>
 
       {method === "upi" && (
-        <div style={{ background: '#e6f7ff', padding: 18, borderRadius: 10, marginBottom: 24 }}>
+        <div style={{ background: '#FFF9C4', padding: 18, borderRadius: 10, marginBottom: 24, boxShadow: '0 1px 6px rgba(0,0,0,0.04)' }}>
           <h3 style={{ margin: 0, fontSize: 18 }}>Pay via UPI</h3>
           <div style={{ margin: '12px 0' }}>
             <img src="/upi-qr-placeholder.png" alt="UPI QR" style={{ width: 160, height: 160, borderRadius: 8, border: '1.5px solid #007bff' }} />
@@ -120,7 +127,7 @@ export default function PaymentPage() {
         </div>
       )}
       {method === "pi" && (
-        <div style={{ background: '#f3e6ff', padding: 18, borderRadius: 10, marginBottom: 24 }}>
+        <div style={{ background: '#FFF9C4', padding: 18, borderRadius: 10, marginBottom: 24, boxShadow: '0 1px 6px rgba(0,0,0,0.04)' }}>
           <h3 style={{ margin: 0, fontSize: 18 }}>Pay via Pi Network</h3>
           <div style={{ fontSize: 16, margin: '12px 0' }}>Send payment to: <b>your-pi-username</b></div>
           <div style={{ fontSize: 14, color: '#555' }}>Open the Pi Network app, send the payment, then upload your screenshot and enter the Pi transaction ID below.</div>
@@ -128,10 +135,11 @@ export default function PaymentPage() {
       )}
 
       <div style={{ 
-        background: '#f8f9fa', 
+        background: '#FFF9C4', 
         padding: '25px', 
         borderRadius: '12px',
-        marginBottom: '25px'
+        marginBottom: '25px',
+        boxShadow: '0 1px 6px rgba(0,0,0,0.04)'
       }}>
         <h3 style={{ marginBottom: '15px', fontSize: '18px' }}>Step 1: Upload Payment Screenshot</h3>
         
@@ -153,9 +161,10 @@ export default function PaymentPage() {
       </div>
 
       <div style={{ 
-        background: '#f8f9fa', 
+        background: '#FFF9C4', 
         padding: '25px', 
-        borderRadius: '12px'
+        borderRadius: '12px',
+        boxShadow: '0 1px 6px rgba(0,0,0,0.04)'
       }}>
         <h3 style={{ marginBottom: '15px', fontSize: '18px' }}>Step 2: Enter Transaction ID</h3>
         <input
@@ -193,9 +202,10 @@ export default function PaymentPage() {
       <div style={{ 
         marginTop: '25px', 
         padding: '15px', 
-        background: '#fff3cd',
+        background: '#FFF9C4',
         border: '1px solid #ffc107',
-        borderRadius: '8px'
+        borderRadius: '8px',
+        boxShadow: '0 1px 6px rgba(0,0,0,0.04)'
       }}>
         <p style={{ color: '#856404', margin: 0, fontSize: '14px' }}>
           💡 <strong>Tip:</strong> Make sure your UNR number is correct. You will receive confirmation once payment is verified.
