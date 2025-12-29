@@ -1,20 +1,25 @@
 // src/api/index.js
 
-const BASE = import.meta.env.VITE_API_BASE || "/api";
+import { API_BASE } from "../config/api";
 
 // Get all products or search by keyword
 export async function getProducts(query = "", categoryId = "") {
   try {
-    const params = [];
-    if (query) params.push(`q=${encodeURIComponent(query)}`);
-    if (categoryId) params.push(`categoryId=${encodeURIComponent(categoryId)}`);
-    const url = params.length
-      ? `${BASE}/products?${params.join("&")}`
-      : `${BASE}/products`;
+    const params = new URLSearchParams();
+    if (query) params.append("q", query);
+    if (categoryId) params.append("categoryId", categoryId);
 
-    const res = await fetch(url);
+    const url =
+      params.toString().length > 0
+        ? `${API_BASE}/api/products?${params.toString()}`
+        : `${API_BASE}/api/products`;
+
+    const res = await fetch(url, {
+      credentials: "include",
+    });
+
     if (!res.ok) throw new Error("Failed to load products");
-    return res.json();
+    return await res.json();
   } catch (err) {
     console.error("API getProducts error:", err);
     return [];
@@ -24,9 +29,12 @@ export async function getProducts(query = "", categoryId = "") {
 // Get a single product by ID
 export async function getProduct(id) {
   try {
-    const res = await fetch(`${BASE}/products/${id}`);
+    const res = await fetch(`${API_BASE}/api/products/${id}`, {
+      credentials: "include",
+    });
+
     if (!res.ok) throw new Error("Failed to load product");
-    return res.json();
+    return await res.json();
   } catch (err) {
     console.error("API getProduct error:", err);
     return null;
