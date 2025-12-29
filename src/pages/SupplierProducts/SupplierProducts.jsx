@@ -1,15 +1,15 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SupplierProducts.css";
-
-const API = "/api";
+import { API_BASE } from "../../api/client";
 
 function SupplierProducts() {
   const [products, setProducts] = useState([]);
 
   const loadProducts = async () => {
     try {
-      const res = await axios.get(`${API}/products?supplier=true`, {
+      const res = await axios.get(`${API_BASE}/products?supplier=true`, {
         withCredentials: true
       });
       setProducts(res.data);
@@ -21,7 +21,7 @@ function SupplierProducts() {
   const deleteProduct = async (id) => {
     if (!window.confirm("Delete this product?")) return;
     try {
-      await axios.delete(`${API}/products/${id}`, {
+      await axios.delete(`${API_BASE}/products/${id}`, {
         withCredentials: true
       });
       loadProducts();

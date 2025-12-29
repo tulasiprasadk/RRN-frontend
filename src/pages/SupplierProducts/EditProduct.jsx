@@ -1,6 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./EditProduct.css";
+import { API_BASE } from "../../api/client";
 
 export default function EditProduct() {
   const { productId } = useParams();
@@ -15,7 +17,7 @@ export default function EditProduct() {
   const loadProduct = async () => {
     try {
       const res = await fetch(
-        `/supplier/products/${productId}`
+        `${API_BASE}/supplier/products/${productId}`
       );
 
       const data = await res.json();
@@ -30,7 +32,7 @@ export default function EditProduct() {
 
     try {
       const res = await fetch(
-        `/supplier/products/${productId}/update`,
+        `${API_BASE}/supplier/products/${productId}/update`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
