@@ -25,7 +25,7 @@ export default function AdminSupplierDetail() {
   async function loadSupplier() {
     setLoading(true);
     try {
-      const res = await axios.get(`${API_BASE}/api/admin/suppliers/${id}`);
+      const res = await axios.get(`${API_BASE}/admin/suppliers/${id}`);
       // some endpoints return { data: ... } while others return direct object
       setSupplier(res.data?.data || res.data);
     } catch (err) {
@@ -37,7 +37,7 @@ export default function AdminSupplierDetail() {
 
   async function loadSupplierProducts() {
     try {
-      const res = await axios.get(`${API_BASE}/api/admin/suppliers/${id}/products`);
+      const res = await axios.get(`${API_BASE}/admin/suppliers/${id}/products`);
       setProducts(res.data.products || []);
     } catch (err) {
       console.error("Error loading products", err);
@@ -53,12 +53,12 @@ export default function AdminSupplierDetail() {
     try {
       // Prefer explicit endpoints if backend exposes them
       if (newStatus === "approved") {
-        await axios.put(`${API_BASE}/api/admin/suppliers/${id}/verify`);
+        await axios.put(`${API_BASE}/admin/suppliers/${id}/verify`);
       } else if (newStatus === "rejected") {
-        await axios.put(`${API_BASE}/api/admin/suppliers/${id}/reject`);
+        await axios.put(`${API_BASE}/admin/suppliers/${id}/reject`);
       } else {
         // fallback: send generic update if exists server-side
-        await axios.put(`${API_BASE}/api/admin/suppliers/${id}`, { status: newStatus });
+        await axios.put(`${API_BASE}/admin/suppliers/${id}`, { status: newStatus });
       }
       await loadSupplier(); // refresh supplier data
     } catch (err) {
@@ -69,7 +69,7 @@ export default function AdminSupplierDetail() {
   async function deleteSupplier() {
     if (!confirm("Do you really want to delete this supplier?")) return;
     try {
-      await axios.delete(`${API_BASE}/api/admin/suppliers/${id}`);
+      await axios.delete(`${API_BASE}/admin/suppliers/${id}`);
       navigate("/admin/suppliers");
     } catch (err) {
       console.error("Delete failed", err);
