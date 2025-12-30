@@ -1,7 +1,7 @@
 // src/pages/Flowers.jsx
 
 import { useEffect, useState } from "react";
-import { API_BASE } from "../api/client";
+import { API_BASE } from "../config/api";
 import ProductCard from "../components/ProductCard";
 import CartPanel from "../components/CartPanel";
 
