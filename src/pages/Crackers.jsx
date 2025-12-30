@@ -17,7 +17,7 @@ const crackerInfo = {
 };
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import { API_BASE } from "../api/client";
+import { API_BASE } from "../config/api";
 import CartPanel from "../components/CartPanel";
 import { useQuickCart } from "../context/QuickCartContext";
 
